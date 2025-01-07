@@ -12,15 +12,16 @@ public class Main {
 
             while (true) {
                 System.out.println("— Введите скорость машины №" + i + ":");
-                int speed = scanner.nextInt();
+                try {
+                    int speed = Integer.parseInt(scanner.next());
 
-                if (speed >= 0 && speed <= 250){
-                    Car car = new Car(name, speed);
-                    race.calculatePosition(car);
-                    break;
-                } else {
-                    System.out.println("— Неправильная скорость");
-                }
+                    if (speed >= 0 && speed <= 250) {
+                        Car car = new Car(name, speed);
+                        race.calculatePosition(car);
+                        break;
+                    }
+                } catch (NumberFormatException ignore) {}
+                System.out.println("— Неправильная скорость");
             }
         }
         System.out.println("Самая быстрая машина: " + race.getNameLeader());
